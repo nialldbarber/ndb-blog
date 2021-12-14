@@ -1,0 +1,111 @@
+---
+title: What is a closure?
+date: '2021-12-14'
+tags: ['javascript']
+draft: false
+summary: What is a closure in JavaScript? An explanation with examples
+---
+
+## TL;DR, show me the code!
+
+```jsx
+function outerFn() {
+  let message = 'pickles'
+  function innerFn() {
+    return message // <- this function is a closure
+  }
+  return innerFn()
+}
+
+outerFn() // 'pickles'
+```
+
+A closure is a fancy term you'll hear that refers to something that's actually fairly simple. A closure is a function that has been wrapped, or _enclosed_ by another function. The significance of this is that a variable declared in the outer function will also be accessible in the inner function.
+
+Let's take a deep dive into the code above. The variable `message` with the value of `'pickles'` is created in `outerFn()`. Another function is created within `outerFn()` called `innerFn()` which just returns `message`. But how does it have access to it? Does it work the other way around? Does `outerFn()` have access to a hypothetical variable declared in `innerFn()`?
+
+Let's try! Does the code below work? What will the output be?
+
+```jsx
+function outerFn() {
+  function innerFn() {
+    let breakfast = 'porridge'
+  }
+  return breakfast
+}
+
+outerFn() // ???
+```
+
+Take some time to think about it, go through each line and take an educated guess.
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+Have you made a guess 👀 ?
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+It wouldn't work because `breakfast` is not defined.
+
+```jsx
+function outerFn() {
+  function innerFn() {
+    let breakfast = 'porridge'
+  }
+  return breakfast
+}
+
+outerFn() // Uncaught ReferenceError: breakfast is not defined
+```
+
+Why is this? Well the way closures work in JavaScript means that a function has access to it's outer lexical scope, but this only works in one direction; i.e. from the inside out. In the example above, the variable `breakfast` is declared in the `innerFn()` function but is called in the function outside it (`outerFn()`). `outerFn()` cannot look inside it's nested functions, so to the outer function, `breakfast` doesn't exist.
+
+Ok so now we know what a closure is, but why are they useful?
