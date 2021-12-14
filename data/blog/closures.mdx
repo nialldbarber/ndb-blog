@@ -109,3 +109,24 @@ outerFn() // Uncaught ReferenceError: breakfast is not defined
 Why is this? Well the way closures work in JavaScript means that a function has access to it's outer lexical scope, but this only works in one direction; i.e. from the inside out. In the example above, the variable `breakfast` is declared in the `innerFn()` function but is called in the function outside it (`outerFn()`). `outerFn()` cannot look inside it's nested functions, so to the outer function, `breakfast` doesn't exist.
 
 Ok so now we know what a closure is, but why are they useful?
+
+Let's start with the big one; data encapsulation. With closures we can keep data closed off from the application and make available only when necessary. This means anything you create, unless you call it and use it, will stay in the function and not affect any other part of the codebase. Here's an example:
+
+```jsx
+let score = 0
+
+function outerFn() {
+  let score = 10
+  function innerFn() {
+    return score
+  }
+  return innerFn()
+}
+
+console.log(outerFn()) // 10
+console.log(score) // 0
+```
+
+Something else we can do with closures is data persistence.
+
+Patterns: modules, memoization, currying
