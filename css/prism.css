@@ -134,3 +134,13 @@
 .token.italic {
   font-style: italic;
 }
+
+.prose pre {
+  background-color: rgba(23, 23, 23, 1);
+  border: 1px solid rgba(236, 72, 153, 0.5);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.dark .dark\:prose-dark code {
+  background-color: rgba(23, 23, 23, 1);
+}

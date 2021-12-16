@@ -20,6 +20,7 @@ module.exports = {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        customBg: '#222831',
         primary: colors.teal,
         gray: colors.trueGray,
       },
