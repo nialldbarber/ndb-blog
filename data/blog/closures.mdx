@@ -110,7 +110,7 @@ Why is this? Well the way closures work in JavaScript means that a function has 
 
 Ok so now we know what a closure is, but why are they useful?
 
-Let's start with the big one; data encapsulation. With closures we can keep data closed off from the application and make available only when necessary. This means anything you create, unless you call it and use it, will stay in the function and not affect any other part of the codebase. Here's an example:
+Let's start with the big one; data encapsulation. With closures we can keep data closed off from the application and make available only when necessary. This means anything you create will stay in the function and not affect any other part of the codebase. Here's an example:
 
 ```jsx
 let score = 0
@@ -122,11 +122,26 @@ function outerFn() {
   }
   return innerFn()
 }
+```
+
+We create a variable called `score` and assign it a value of `0`. We then create another variable called `score` inside the `outer()` function and give it the value of `10`. At this point, we might be a bit tied up! What is the value of `score`?! Is it `0` or `10`.
+
+The answer depends what part of the code is being run. If we're outside in the global space, `score` will be `0`, but inside the `outerFn()` function, `score` is now `10`. The `score` declared outside of `outerFn()` would still be accessible, but we've declared a new `score` variable, so to `outerFn()`, `score` is now `10`.
 
 console.log(outerFn()) // 10
 console.log(score) // 0
-```
 
 Something else we can do with closures is data persistence.
 
 Patterns: modules, memoization, currying
+
+Can give functions memories
+
+The typical usecase of a function is to be used and return a value. With closures, we can store information in them, state, data, etc.
+
+Cache persistent memory
+
+Functions inside a functions aren't callable outside of function. Because the outer function has it's own local execution context. And the inner function only exists inside of it.
+
+References:
+https://www.youtube.com/watch?v=XTAzsODSCsM&t=123s
