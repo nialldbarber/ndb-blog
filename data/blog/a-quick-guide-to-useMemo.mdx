@@ -76,8 +76,6 @@ Here's our updated code to include `useMemo`:
 ```jsx
 function Child({ num }) {
   const getDoubledValue = useMemo(() => someExpensiveFn(num), [num])
-  console.log('<Child /> re-rendered')
-
   return <p>{getDoubledValue}</p>
 }
 
