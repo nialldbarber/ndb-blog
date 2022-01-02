@@ -14,7 +14,7 @@ Here's a short and sweet list of my own mental models for array methods.
 
 ### Definition
 
-[`Array.prototype.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) is a method that takes a callback as it's argument and returns a new array based on the callbacks logic. It also takes two other arguments: the current index and the array you are mapping over.
+[`Array.prototype.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) is a method that takes a callback as it's argument and returns a new array based on the callback's logic. It also takes two other arguments: the current index and the array you are mapping over.
 
 ### Examples
 
@@ -62,7 +62,7 @@ this case sand), and keep the values you want (gold pieces).
 
 ### Definition
 
-[`Array.prototype.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) is a method that takes a callback as it's first argument, which does something to each element of the array. It also has two more arguments: index and the array.
+[`Array.prototype.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) is a method that takes a callback as its first argument, which does something to each element of the array. It also has two more arguments: the index and the array.
 
 ### Examples
 
@@ -92,7 +92,7 @@ So we're essentially always doing something to each element in the array. Let's 
 
 ![Map](/static/images/map.png)
 
-My `.map()` mental model is a conveyor belt, stamping each item that comes along. The stamper is the callback function and each item on the belt is each item we want to map over. All items go through the process and will later be shipped off and in our case they'll be shipped off to a new array.
+My `.map()` mental model is a conveyor belt, stamping each item that comes along. The stamper is the callback function, and each item on the belt is each item we want to map over. All items go through the process and will later be shipped off, and in our case they'll be shipped off to a new array.
 
 ---
 
@@ -100,13 +100,13 @@ My `.map()` mental model is a conveyor belt, stamping each item that comes along
 
 ### Definition
 
-[`Array.prototype.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) is slightly different from `.filter()` and `.map()`. It takes a callback as it's first argument, but that callback must have a previous value and current value as it's parameters. Like the other methods though, it also takes the current index and array as it's last two arguments. The outcome of reduce, is to _reduce_ a bunch of values down to one value (this doesn't have to be a primitive value, it can be another object or array etc).
+[`Array.prototype.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) is slightly different from `.filter()` and `.map()`. It takes a callback as it's first argument, but that callback must have a previous value and current value as it's arguments. Like the other methods, though, it also takes the current index and array as it's last two arguments. The outcome of reduce, is to _reduce_ a bunch of values down to one value (this doesn't have to be a primitive value, it can be another object or array etc).
 
 As with most things, it's probably best to see a few examples of how it works. (this particular method was quite hard to grasp when I first learnt it!)
 
 ### Examples
 
-The most common example for `.reduce()` is the find the total sum of an array:
+The most common example for `.reduce()` is to find the total sum of an array:
 
 ```jsx
 let arr = [2, 4, 6, 8]
@@ -130,9 +130,9 @@ on first loop, our running total is now `2`
 End
 ```
 
-There are so many cool things you can do with `.reduce()` that are not just reducing an array down to a single value. I recently saw an example from James Sinclair who detailed a list of fun things you can do with `.reduce()`. [Check that out here btw](https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/).
+There are so many cool things you can do with `.reduce()` that are not just reducing an array down to a single value. I recently saw an example from James Sinclair who detailed a list of fun things you can do with `.reduce()`. [Check that out here, btw](https://jrsinclair.com/articles/2019/functional-js-do-more-with-reduce/).
 
-One brilliant example was converting an array of objects into a object. This can be useful if you want to create a lookup table for instance. Let's use our employee array from before and convert it to an object:
+One brilliant example was converting an array of objects into a object. This can be useful if you want to create a lookup table, for instance. Let's use our employee array from before and convert it to an object:
 
 ```jsx
 let employees = [
@@ -160,7 +160,7 @@ console.log(employeesObj) // =>
 // }
 ```
 
-In the example above we start with an initial value of an empty object. We then loop over the `employees` array and spread each new item into the eventual return value of `employeesObj`. From that we are using the employees name as the key for the new object.
+In the example above, we start with an initial value of an empty object. We then loop over the `employees` array and spread each new item into the eventual return value of `employeesObj`. From that we are using the employee's name as the key for the new object.
 
 Even in the last example, we're still essentially boiling an array down to a new value (it just so happens that this example is an object!). Let's check out the mental model for this:
 
@@ -168,4 +168,4 @@ Even in the last example, we're still essentially boiling an array down to a new
 
 ![Reduce](/static/images/reduce.png)
 
-This mental model is a sand castle; a final piece that is made from many pieces. A final product, if you will. The castle acts as the final returned value and also the accumlator value. Each piece of sand you add to the castle acts as the current value that you're adding to the total value.
+This mental model is a sand castle; a final piece that is made from many pieces. A final product, if you will. The castle acts as the final returned value and also the accumulator value. Each piece of sand you add to the castle acts as the current value that you're adding to the total value.
