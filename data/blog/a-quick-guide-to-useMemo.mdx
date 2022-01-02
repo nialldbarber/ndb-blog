@@ -33,7 +33,7 @@ function someExpensiveFn(x) {
 }
 ```
 
-Ok, now let's imagine we have a parent and child component. The child component receives a `num` prop which it then uses to to calculate the expensive function call `someExpensiveFn()`.
+Ok, now let's imagine we have a parent and child component. The child component receives a `num` prop which it then uses to calculate the expensive function call `someExpensiveFn()`.
 
 ```jsx
 function Child({ num }) {
@@ -63,7 +63,7 @@ The problem is that `someExpensiveFn()` is called _every_ time `num` updates, ev
 
 ## Problem solved!
 
-Luckily, there is a way to fix this; a built in React hook called `useMemo`.
+Luckily, there is a way to fix this; a built-in React hook called `useMemo`.
 
 Here's my quick mental model for `useMemo`:
 

@@ -24,7 +24,7 @@ A closure is a fancy term that refers to something that's actually fairly simple
 
 ## A visual explanation of a closure
 
-Anything declared in the higher watering can is available in the lower watering can. But! anything declared in the lower watering can is not available in the higher one. A one way system that only flows downwards, if you will.
+Anything declared in the higher watering can is available in the lower watering can. But! Anything declared in the lower watering can is not available in the higher one. A one way system that only flows downwards, if you will.
 
 ![Closure](/static/images/closure.png)
 
@@ -112,7 +112,7 @@ function outerFn() {
 outerFn() // Uncaught ReferenceError: breakfast is not defined
 ```
 
-Why is this? Well the way closures work in JavaScript means that a function has access to it's outer lexical scope, but this only works in one direction; i.e. from the inside out. In the example above, the variable `breakfast` is declared in the `innerFn()` function but is called in the function outside it. `outerFn()` cannot look inside it's nested functions, so to the outer function, `breakfast` doesn't exist.
+Why is this? Well, the way closures work in JavaScript means that a function has access to its outer lexical scope, but this only works in one direction; i.e. from the inside out. In the example above, the variable `breakfast` is declared in the `innerFn()` function but is called in the function outside it. `outerFn()` cannot look inside it's nested functions, so to the outer function, `breakfast` doesn't exist.
 
 ## Use cases
 
@@ -120,7 +120,7 @@ Ok so now we know what a closure is, but why are they useful?
 
 ### Encapsulation
 
-Let's start with the big one; encapsulation. With closures we can keep data closed off from the application and make available only when necessary. This means anything you create will stay in the function and not affect any other part of the codebase. Here's an example:
+Let's start with the big one; encapsulation. With closures, we can keep data closed off from the application and make available only when necessary. This means anything you create will stay in the function and not affect any other part of the codebase. Here's an example:
 
 ```jsx
 let score = 0
@@ -136,7 +136,7 @@ function outerFn() {
 
 We create a variable called `score` and assign it a value of `0`. We then create another variable called `score` inside the `outer()` function and give it the value of `10`. At this point, we might be a bit tied up! What is the value of `score`?! Is it `0` or `10`.
 
-The answer depends on what part of the code is being run. If we're outside; in the global space, `score` will be `0`, but if we're inside the `outerFn()` function, `score` will be `10`. The `score` declared outside of `outerFn()` would still be accessible by the way, but we've declared a new `score` variable, so to `outerFn()`, `score` is now `10`.
+The answer depends on what part of the code is being run. If we're outside; in the global space, `score` will be `0`, but if we're inside the `outerFn()` function, `score` will be `10`. The `score` declared outside `outerFn()` would still be accessible by the way, but we've declared a new `score` variable, so to `outerFn()`, `score` is now `10`.
 
 ## A visualisation of encapsulation
 
@@ -148,7 +148,7 @@ Another thing closures are great for is persistence. This can be called many thi
 
 Let's see it in action:
 
-We'll create an outer function again, create a variable `count` and increment that value each time the inner function is called. Finally we return the inner function so we have access to the value.
+We'll create an outer function again, create a variable `count` and increment that value each time the inner function is called. Finally, we return the inner function, so we have access to the value.
 
 ```jsx
 function outsideCount() {
@@ -177,7 +177,7 @@ console.log(outer()) // 3
 
 ### Memoization
 
-A good use case for this is caching values, or memoization. Memoization is the technique of storing the value of an expensive function call, memorising it and if the inputs to the function are the same, return the stored value instead of running the expensive functin again.
+A good use case for this is caching values, or memoization. Memoization is the technique of storing the value of an expensive function call, memorising it and if the inputs to the function are the same, return the stored value instead of running the expensive function again.
 
 ## A visualisation of memoization
 
@@ -228,7 +228,7 @@ We create a function called `cache()` which has the parameter `func`. `func` wil
 function cache(func) {} // func is the heavy computation function
 ```
 
-Next we create an empty object where we will store our `func` parameters as keys and returned values as values. Once called again, if the parameters are the same, the cache function will return the value of whatevers in `cacheObj`.
+Next we create an empty object where we will store our `func` parameters as keys and returned values as values. Once called again, if the parameters are the same, the cache function will return the value of whatever is in `cacheObj`.
 
 ```jsx
 function cache(func) {
@@ -248,7 +248,7 @@ Btw the eventual `cacheObj` will look something like this when it's full of stor
 */
 ```
 
-Next we return a function that takes the spread arguments of the expensive function:
+Next, we return a function that takes the spread arguments of the expensive function:
 
 ```jsx
 function cache(func) {
