@@ -7,6 +7,7 @@ const siteMetadata = {
   siteUrl: 'https://www.niallb.codes/',
   siteRepo: '',
   siteLogo: '/static/images/logo.png',
+  socialBanner: '/static/images/banner.png',
   image: '/static/images/avatar.png',
   email: 'address@yoursite.com',
   github: 'https://github.com/nialldbarber',
