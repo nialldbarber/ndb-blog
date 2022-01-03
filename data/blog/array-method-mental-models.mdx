@@ -6,11 +6,26 @@ draft: false
 summary: Mental models for array methods
 ---
 
+<ul>
+  <li>
+    <a href="#filter">Filter</a>
+  </li>
+  <li>
+    <a href="#map">Map</a>
+  </li>
+  <li>
+    <a href="#reduce">Reduce</a>
+  </li>
+  <li>
+    <a href="#concat">Concat</a>
+  </li>
+</ul>
+
 I usually learn best by creating strong mental models. These are images you think of when breaking down a concept that can be difficult to grasp. I learnt a lot of mental models from [Dan Abramov's Just JavaScript](https://justjavascript.com/); my favourite one was thinking of variables as wires pointing to a value.
 
 Here's a short and sweet list of my own mental models for array methods.
 
-# Filter
+<h1 id="filter">Filter</h1>
 
 ### Definition
 
@@ -58,7 +73,7 @@ this case sand), and keep the values you want (gold pieces).
 
 ---
 
-# Map
+<h1 id="map">Map</h1>
 
 ### Definition
 
@@ -96,7 +111,7 @@ My `.map()` mental model is a conveyor belt, stamping each item that comes along
 
 ---
 
-# Reduce
+<h1 id="reduce">Reduce</h1>
 
 ### Definition
 
@@ -169,3 +184,54 @@ Even in the last example, we're still essentially boiling an array down to a new
 ![Reduce](/static/images/reduce.png)
 
 This mental model is a sand castle; a final piece that is made from many pieces. A final product, if you will. The castle acts as the final returned value and also the accumulator value. Each piece of sand you add to the castle acts as the current value that you're adding to the total value.
+
+---
+
+<h1 id="concat">Concat</h1>
+
+### Definition
+
+[`Array.prototype.concat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat) is an array method that essentially glues together two (or more) arrays. It does this by merging them together and creating a new array.
+
+### Examples
+
+A good use case for using `concat()` is to merge two arrays together:
+
+```jsx
+let fruit = ['apple', 'orange', 'kiwi']
+let veg = ['broccoli', 'sprouts']
+let fiveADay = fruit.concat(veg)
+console.log(fiveADay) // => ['apple', 'orange', 'kiwi', 'broccoli', 'sprouts']
+```
+
+Pretty simple! Now, lets say you need to add a new user to a database. `.concat()` would be a perfect candidate for that:
+
+```jsx
+let db = [
+  // ...long list of users
+]
+
+let newUser = {
+  name: 'Niall',
+  age: 31,
+  jobTitle: 'Software Engineer',
+}
+
+let updatedDb = db.concat(newUser)
+
+console.log(updatedDb) // =>
+// [
+//   ...long list of users
+//   {
+//     name: "Niall",
+//     age: 31,
+//     jobTitle: "Software Engineer"
+//   }
+// ]
+```
+
+### Mental model
+
+![Concat](/static/images/concat.png)
+
+My mental model for `.concat()` is (I'll admit), a little dumb, but it works for me! I see `.concat()` as a long train set and the original array (the train) is running along, with new carriages being added to it as it stops at train stations. Each new carriage is a new array that needs to be added to the original array (again, the train).
