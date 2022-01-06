@@ -1,5 +1,8 @@
 Blog todos:
 
-- promise.all
-- useCallback
-- useMemo
+- [ ] Promises
+- [ ] promise.all
+- [ ] useCallback
+- [ ] Git remotes
+- [ ] Git rebase 
+- [x] useMemo 
