@@ -16,7 +16,7 @@ const LayoutWrapper = ({ children }) => {
             <Link href="/" aria-label="Niall Barber Blog">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
-                  <span className="text-4xl font-semibold">{'{ ... }'}</span>
+                  <span className="text-3xl font-semibold">{'{ ... }'}</span>
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
                   <div className="hidden h-6 text-2xl font-semibold sm:block">
@@ -25,6 +25,10 @@ const LayoutWrapper = ({ children }) => {
                 ) : (
                   siteMetadata.headerTitle
                 )}
+              </div>
+              <div className="mt-2 ml-6">
+                <p className="m-0 text-tiny">A braindump for notes,</p>
+                <p className="m-0 text-tiny"> ideas & mental models</p>
               </div>
             </Link>
           </div>

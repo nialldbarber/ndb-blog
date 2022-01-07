@@ -1,0 +1,60 @@
+---
+title: React Native Docs
+date: '2022-01-06'
+tags: ['react', 'react-native', 'javascript']
+draft: true
+summary: React Native notes
+---
+
+### Style Prop
+
+Styles in React Native (referred to as RN from now on for brevity!) aren't the same as web components using CSS. With the web you have CSS, but that doesn't exist on native devices. So we have CSS modules as the default option.
+
+A RN component will use the `style` prop to apply styles. Much like CSS, there is an order of precedence; with CSS you have the cascade in the stylesheet and with RN, it's simply the last style that's applied.
+
+```jsx
+<Text style={{ color: 'red' }}>I am some text!</Text>
+```
+
+Because React is just JavaScript, you can apply multiple styles using an array, and the last style will take precedence.
+
+```jsx
+const styles = StyleSheet.create({
+  text: {
+    color: 'red',
+  },
+  textTwo: {
+    color: 'blue',
+  }
+})
+
+<Text style={[styles.text, styles.textTwo]}>I am some text!</Text>
+```
+
+In the above snippet, `styles.textTwo` will be applied.
+
+### Dimensions
+
+Dimensions are generally set with fixed widths/heights in RN. This is because there _are no_ units and there is [no universal mapping from points to standard units of measurement](https://reactnative.dev/docs/height-and-width). The trouble here is that something you size on an iPhone might not look the same on an Android phone, but it is mostly not noticeable.
+
+### Flexbox
+
+There are quite a few CSS rules that are not available with RN. `grid` is notably missing along with `position: fixed`. But, it's not the end of the world as we're left with a pretty damn good layout system, namely `flexbox`. To start with, if we want an element to span the width and height of it's parent, we need to use `flex: <value>`:
+
+```jsx
+<View style={{ flex: 1 }} />
+```
+
+This is equivalent in CSS to:
+
+```html
+<div style="display: flex;">
+  <div style="flex: 1;"></div>
+</div>
+```
+
+One thing to note is that whilst a lot of RN flexbox is similar to web flexbox, there are some [differences](https://reactnative.dev/docs/flexbox#flex). `flexDirection` defaults to `column` instead of `row`, `alignContent` defaults to `flex-start` instead of `stretch`, `flexShrink` defaults to `0` instead of `1` and `flex` only takes one number.
+
+### Percentages
+
+Percentages are also an option, but might harder to reconcile with different devices.
