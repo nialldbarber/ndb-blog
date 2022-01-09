@@ -11,4 +11,5 @@ Blog todos:
 - [ ] Array methods
 - [ ] BLOB API
 - [ ] HTTP codes
-- [ ] for await of 
+- [ ] for await of
+- [ ] Object.entries
