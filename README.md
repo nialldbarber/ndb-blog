@@ -1,5 +1,6 @@
 Blog todos:
 
+- [ ] String methods
 - [ ] Promises
 - [ ] promise.all
 - [ ] useCallback
