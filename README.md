@@ -13,3 +13,4 @@ Blog todos:
 - [ ] HTTP codes
 - [ ] for await of
 - [ ] Object.entries
+- [ ] Throwing errors
