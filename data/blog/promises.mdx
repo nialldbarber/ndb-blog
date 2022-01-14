@@ -68,8 +68,61 @@ reject(new Error('...crap!'))
 
 There are three methods for interacting with promises:
 
-- `.then()`
-- `.catch()`
-- `.finally()`
+#### Then
+
+This method is run if the executing code runs successfully and is _resolved_. We access it using the `.then()` function:
+
+```jsx
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success!')
+  }, 2000)
+})
+
+promise.then((result) => console.log(result))
+// => Promise {<pending>}
+// waiting for 2 seconds...
+// => success!
+```
+
+#### Catch
+
+If we want to check for errors (and we do!), we'll want to add a `.catch()` to intercept where our code has failed. If our code is rejected then `.then()` is skipped and `.catch()` is run instead:
+
+```jsx
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('uh oh! failed...')
+  }, 2000)
+})
+
+promise
+  .then((result) => {
+    console.log(result)
+  })
+  .catch((err) => {
+    console.log(err)
+    throw err
+  })
+// => uh oh! failed...
+// => Promise {<fulfilled>: undefined}
+// => Uncaught (in promise) uh oh! failed...
+```
+
+Here we can see that our promise was successfully called (fulfilled), but ended with an error `undefined`. I also made sure to `throw` an error in our catch block, as the program would continue without it. Omitting a `throw` is known as "swallowing" your errors. We don't want that! We want to know when our code is not working, so we `throw`.
+
+#### Finally
 
 A proxy for a value not yet known
+
+Any error thrown in our fulfillment handler, will be turned into a rejected promise. Which will be caught by our rejection handler (catch)
+
+So promises can be fetched in parallel, you can use Promise.all([]). This was, promises don't rely on the other finishing and can be fetched in parallel, meaning much quicker!
+
+All promises must be fulfilled for the Promise from Promise.all([]) to be resolved. Otherwise it's rejected
+
+Promise.allSettled returns a new promise, settles once all promises have settled. I.e. once they are no longer pending
+
+The return value of this is an array of the settled promises
+
+Async/await: the await operator pauses the function exection until the promise has been settled. When the promise has been fulfilled the await value, takes on the value that was resolved
