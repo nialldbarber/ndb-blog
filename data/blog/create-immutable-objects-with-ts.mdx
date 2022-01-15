@@ -119,3 +119,71 @@ lg = '50px'
 
 // => ❌ Type '"50px"' is not assignable to type '"18px"'.
 ```
+
+## Caveats
+
+You might've noticed that whilst the `readonly` keyword works on primitive types, it doesn't quite work the same for non-primitive types. As you might imagine, this will produce an error:
+
+```ts
+type Prices = {
+  readonly base: number[]
+}
+
+const priceList: Prices = {
+  base: [4.99, 10, 40, 7.3],
+}
+
+priceList.base = 'gimme gimme'
+
+// => ❌ Cannot assign to 'base' because it is a read-only property.
+```
+
+But we can mutate the array with no errors:
+
+```ts
+type Prices = {
+  readonly base: number[]
+}
+
+const priceList: Prices = {
+  base: [4.99, 10, 40, 7.3],
+}
+
+priceList.base.push(20)
+console.log(priceList) // => ✅ all good!
+// [4.99, 10, 40, 7.3, 20]
+```
+
+So, with arrays we can either use `ReadonlyArray` or place `readonly` before the type:
+
+Option 1):
+
+```ts
+type Prices = {
+  base: ReadonlyArray<number>
+}
+```
+
+Option 2):
+
+```ts
+type Prices = {
+  base: readonly number[]
+}
+```
+
+As with most things in TypeScript, it all comes down to personal preference, but both are valid:
+
+```ts
+type Prices = {
+  base: readonly number[]
+}
+
+const priceList: Prices = {
+  base: [4.99, 10, 40, 7.3],
+}
+
+priceList.base.push(20)
+// ==> ❌ Property 'push' does not exist on
+//        type 'readonly number[]'.
+```
